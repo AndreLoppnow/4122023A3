@@ -16,13 +16,29 @@ public class codigo {
     int resultado = 0;
 
     if (operacao.equals("+")) {
-        resultado = Integer.parseInt(valor1, 2) + Integer.parseInt(valor2, 2);
+        if(valor1.contains(0) || valor2.contains(1)){
+            resultado = Integer.parseInt(valor1, 2) + Integer.parseInt(valor2, 2);
+        }else{
+            System.out.print("Isso não é um número binário");
+        }
     } else if (operacao.equals("-")) {
-        resultado = Integer.parseInt(valor1, 2) - Integer.parseInt(valor2, 2);
+        if(valor1.contains(0) || valor2.contains(1)){
+            resultado = Integer.parseInt(valor1, 2) - Integer.parseInt(valor2, 2);
+        }else{
+            System.out.print("Isso não é um número binário");
+        }
     } else if (operacao.equals("*")) {
-        resultado = Integer.parseInt(valor1, 2) * Integer.parseInt(valor2, 2);
+        if(valor1.contains(0) || valor2.contains(1)){
+            resultado = Integer.parseInt(valor1, 2) * Integer.parseInt(valor2, 2);
+        }else{
+            System.out.print("Isso não é um número binário");
+        }
     } else if (operacao.equals("/")) {
-        resultado = Integer.parseInt(valor1, 2) / Integer.parseInt(valor2, 2);
+        if(valor1.contains(0) || valor2.contains(1)){
+            resultado = Integer.parseInt(valor1, 2) / Integer.parseInt(valor2, 2);
+        }else{
+            System.out.print("Isso não é um número binário");
+        }
     } else {
         System.out.println("Operação inválida.");
         return;

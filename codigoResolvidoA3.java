@@ -5,47 +5,73 @@ import java.util.Scanner;
 public class codigoResolvidoA3 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-    
+
         try {
 
-            String[] tipoOperacao = { "SOMAR", "SUBTRAIR", "MULTIPLICAR", "DIVIDIR" };
-
+            
+            
             System.out.print("Digite o primeiro valor binário: ");
-            int valor1 = scanner.nextInt();
+            String valor1 = scanner.next();
             
             System.out.print("Digite o segundo valor binário: ");
-            int valor2 = scanner.nextInt();
-
-            System.out.print("Ecolha um operação: \n");
-            int i = 0;
-            for (String item : tipoOperacao) {
-                System.out.println("[" + (i + 1) + "]" + item);
-                i++;
-            }
-            int operacao = scanner.nextInt();
+            String valor2 = scanner.next();
             
             int resultado = 0;
-            
-            if (operacao == 1) {
-                resultado = (valor1 + valor2);
-            } else if (operacao == 2) {
-                resultado = (valor1 - valor2);
-            } else if (operacao == 3) {
-                resultado = (valor1 * valor2);  
-            } else if (operacao == 4) {
-                if(valor1 != 0 && valor2 != 0){
-                    resultado = (valor1 / valor2);
-                }else {
-                    System.out.println("Não é possível dividir por zero");
+
+            //Array com as opções de operação
+            String[] tipoOperacao = { "SOMAR", "SUBTRAIR", "MULTIPLICAR", "DIVIDIR" };
+            //Array que armazena todos os numero não binarios para validação
+            String[] arrayNoBinario = {"2", "3", "4", "5", "6", "7", "8", "9"};
+            //Array que armazena apenas os binarios
+            String[] arrayBinario = {"0", "1"};
+
+            //For que percorre o arrayBinario
+            for (int i = 0; i < arrayBinario.length; i++) {
+                //For que percorre o arrayNoBinario
+                for (int j = 0; j < arrayNoBinario.length; j++) {
+
+                    //Primeira condição de validaão para verifiar se há existencia de números binários
+                    if (valor1.contains(arrayBinario[i]) && valor2.contains(arrayBinario[i])) {
+                        //Segunda condição de validaão para verifiar se há existencia de números NÃO binários
+                        if(!valor1.contains(arrayNoBinario[j]) && !valor2.contains(arrayNoBinario[j])){
+
+                            //Trecho de código responsável pela exibição das opções em tela
+                            System.out.print("Ecolha um operação: \n");
+                            int count = 0;
+                            for (String item : tipoOperacao) {
+                                //Exibite na tela o que esta armazenado no Array tipoOperacao e um numero de escolha
+                                System.out.println("[" + (count + 1) + "]" + item);
+                                count++;
+                            }
+                            //recebe o número de escolha
+                            int operacao = scanner.nextInt();
+
+                            //Aqui será onde as operações aconteceram quando escolher uma opção
+                            if (operacao == 1) {
+                                resultado = Integer.parseInt(valor1, 2) + Integer.parseInt(valor2, 2);
+                            } else if (operacao == 2) {
+                                resultado = Integer.parseInt(valor1, 2) - Integer.parseInt(valor2, 2);
+                            } else if (operacao == 3) {
+                                resultado = Integer.parseInt(valor1, 2) * Integer.parseInt(valor2, 2);
+                            } else if (operacao == 4) {
+                                resultado = Integer.parseInt(valor1, 2) / Integer.parseInt(valor2, 2);
+                            } else {
+                                System.out.println("Operação invalida");
+                            }
+                        } else {
+                            System.out.println("Valores não são binários");
+                            break;
+                        }
+                        break;
+                    }
+                    break;
                 }
-            } else {
-                System.out.println("Operação inválida.");
-                return;
+                break;
             }
             
 
-            System.out.println("Resultado binário: " + Integer.toBinaryString(resultado));
-        } catch (Exception e){
+            System.out.println(" " + "Resultado binário: " + Integer.toBinaryString(resultado));
+        } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
     }
