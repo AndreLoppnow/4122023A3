@@ -2,7 +2,7 @@ package A3;
 
 import java.util.Scanner;
 
-public class codigoA3 {
+public class codigoResolvidoA3 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
     
@@ -11,10 +11,10 @@ public class codigoA3 {
             String[] tipoOperacao = { "SOMAR", "SUBTRAIR", "MULTIPLICAR", "DIVIDIR" };
 
             System.out.print("Digite o primeiro valor binário: ");
-            double valor1 = scanner.nextDouble();
+            int valor1 = scanner.nextInt();
             
             System.out.print("Digite o segundo valor binário: ");
-            double valor2 = scanner.nextDouble();
+            int valor2 = scanner.nextInt();
 
             System.out.print("Ecolha um operação: \n");
             int i = 0;
@@ -24,23 +24,27 @@ public class codigoA3 {
             }
             int operacao = scanner.nextInt();
             
-            double resultado = 0;
+            int resultado = 0;
             
             if (operacao == 1) {
                 resultado = (valor1 + valor2);
             } else if (operacao == 2) {
                 resultado = (valor1 - valor2);
             } else if (operacao == 3) {
-                resultado = (valor1 * valor2);
+                resultado = (valor1 * valor2);  
             } else if (operacao == 4) {
-                resultado = (valor1 / valor2);
+                if(valor1 != 0 && valor2 != 0){
+                    resultado = (valor1 / valor2);
+                }else {
+                    System.out.println("Não é possível dividir por zero");
+                }
             } else {
                 System.out.println("Operação inválida.");
                 return;
             }
             
 
-            System.out.println("Resultado binário: " + Integer.toBinaryString(Math.round((float)resultado)));
+            System.out.println("Resultado binário: " + Integer.toBinaryString(resultado));
         } catch (Exception e){
             System.out.println("Error: " + e.getMessage());
         }
